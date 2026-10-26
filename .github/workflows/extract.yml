@@ -1,0 +1,33 @@
+name: Extract ZIP to Repo
+
+on:
+  push:
+    paths:
+      - 'OfficeViewerPDF.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Unzip OfficeViewerPDF.zip
+        run: |
+          unzip -o OfficeViewerPDF.zip -d extracted_tmp
+          # pindahkan isi ke root repo (kecuali folder extracted_tmp & .git)
+          shopt -s dotglob
+          mv extracted_tmp/* ./
+          rmdir extracted_tmp
+
+      - name: Commit extracted files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Auto-extract OfficeViewerPDF.zip" || echo "Tidak ada perubahan"
+          git push
