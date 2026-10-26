@@ -1,37 +1,23 @@
 package com.namaapp
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 
-class MainActivity : Activity() {
+class MainActivity : ComponentActivity() {
     private var selectedUri: Uri? = null
     private var selectedName: String = ""
     private lateinit var selectedText: TextView
     private lateinit var viewButton: Button
     private lateinit var convertButton: Button
 
-    private val pickFile = registerForActivityResult(
-        androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
-    ) { uri ->
-        if (uri != null) {
-            try {
-                contentResolver.takePersistableUriPermission(
-                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            } catch (_: Exception) { }
-            selectedUri = uri
-            selectedName = getDisplayName(uri) ?: "dokumen"
-            selectedText.text = selectedName
-            viewButton.isEnabled = true
-            convertButton.isEnabled = true
-        }
-    }
+    // Dideklarasikan dengan lateinit agar bisa dipanggil di onCreate
+    private lateinit var pickFile: androidx.activity.result.ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +26,22 @@ class MainActivity : Activity() {
         selectedText = findViewById(R.id.txtSelected)
         viewButton = findViewById(R.id.btnView)
         convertButton = findViewById(R.id.btnConvert)
+
+        // Inisialisasi pickFile di dalam onCreate
+        pickFile = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri != null) {
+                try {
+                    contentResolver.takePersistableUriPermission(
+                        uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                } catch (_: Exception) { }
+                selectedUri = uri
+                selectedName = getDisplayName(uri) ?: "dokumen"
+                selectedText.text = selectedName
+                viewButton.isEnabled = true
+                convertButton.isEnabled = true
+            }
+        }
 
         findViewById<Button>(R.id.btnChoose).setOnClickListener {
             pickFile.launch(arrayOf(
