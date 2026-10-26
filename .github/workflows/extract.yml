@@ -19,10 +19,12 @@ jobs:
       - name: Unzip OfficeViewerPDF.zip
         run: |
           unzip -o OfficeViewerPDF.zip -d extracted_tmp
-          # pindahkan isi ke root repo (kecuali folder extracted_tmp & .git)
-          shopt -s dotglob
-          mv extracted_tmp/* ./
-          rmdir extracted_tmp
+          # Gunakan cp -R agar bisa menggabungkan folder yang sudah ada (seperti .github)
+          cp -R extracted_tmp/* ./
+          # Salin file tersembunyi (seperti .gitignore) jika ada
+          cp -R extracted_tmp/.* ./ 2>/dev/null || true
+          # Hapus folder sementara
+          rm -rf extracted_tmp
 
       - name: Commit extracted files
         run: |
