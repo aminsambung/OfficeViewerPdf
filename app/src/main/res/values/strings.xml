@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Office Viewer PDF</string>
+    <string name="choose_file">Pilih dokumen</string>
+    <string name="convert_pdf">Konversi ke PDF</string>
+</resources>

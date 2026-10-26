@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama dokumen"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#17233B"
+        android:paddingBottom="12dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/txtDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#202938"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp"
+            android:textIsSelectable="true" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnSavePdf"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Simpan sebagai PDF" />
+</LinearLayout>

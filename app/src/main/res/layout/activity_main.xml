@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="#F4F7FB">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Office Viewer PDF"
+        android:textColor="#17233B"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buka Word, Excel, PowerPoint, lalu ekspor teks dokumen ke PDF."
+        android:textColor="#58657A"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginBottom="28dp" />
+
+    <Button
+        android:id="@+id/btnChoose"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/choose_file" />
+
+    <TextView
+        android:id="@+id/txtSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Belum ada file dipilih"
+        android:textColor="#17233B"
+        android:textSize="14sp"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnView"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Lihat dokumen"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btnConvert"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/convert_pdf"
+        android:enabled="false"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Format utama: .docx, .xlsx, .pptx. Konversi ini mengambil teks dan membuat PDF sederhana; tata letak asli, gambar, grafik, dan animasi tidak dipertahankan."
+        android:textColor="#68758A"
+        android:textSize="12sp"
+        android:layout_marginTop="24dp" />
+</LinearLayout>
