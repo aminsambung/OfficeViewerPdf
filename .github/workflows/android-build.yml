@@ -24,12 +24,14 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      # Tambahan: Memberi izin agar file gradlew bisa dieksekusi
+      # Perintah baru: Membuat file gradlew secara otomatis
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build debug APK
-        # Diubah menjadi ./gradlew agar menggunakan versi Gradle dari proyek Anda
         run: ./gradlew --no-daemon assembleDebug
 
       - name: Upload APK
